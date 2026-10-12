@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yuklab Olish — MAN STAND OFF</title>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ==========================================
+       RESET & CYBER-GAME VARIABLES
+       ========================================== */
+    :root {
+      --bg-main: #0a0b0e;
+      --bg-card: #12151d;
+      --bg-card-hover: #1a1e29;
+      --primary-neon: #ff6b00;
+      --primary-glow: rgba(255, 107, 0, 0.4);
+      --secondary-gold: #e5a93c;
+      --text-white: #ffffff;
+      --text-gray: #a3a8b5;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --font-display: 'Teko', sans-serif;
+      --font-sub: 'Rajdhani', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --max-width: 1300px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 107, 0, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(229, 169, 60, 0.05) 0%, transparent 40%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* CYBER BUTTONS */
+    .btn-cyber {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--primary-neon);
+      color: #000;
+      font-family: var(--font-sub);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    .btn-cyber:hover {
+      background: #ff8526;
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(255, 107, 0, 0.7);
+    }
+
+    /* ==========================================
+       HEADER & NAVIGATION
+       ========================================== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 11, 14, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      padding: 5px 0;
+      background: rgba(10, 11, 14, 0.98);
+      border-bottom-color: var(--primary-neon);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 85px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo span {
+      color: var(--primary-neon);
+      text-shadow: 0 0 12px var(--primary-glow);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 36px;
+    }
+
+    .nav-link {
+      font-family: var(--font-sub);
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: var(--text-gray);
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text-white);
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--primary-neon);
+      box-shadow: 0 0 8px var(--primary-neon);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: var(--text-white);
+      cursor: pointer;
+    }
+
+    /* ==========================================
+       PAGE BANNER
+       ========================================== */
+    .page-banner {
+      padding: 150px 0 60px;
+      background: linear-gradient(180deg, rgba(10, 11, 14, 0.75) 0%, rgba(10, 11, 14, 1) 100%),
+                  url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1920&auto=format&fit=crop') center/cover;
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .section-tag {
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      color: var(--primary-neon);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .page-desc {
+      color: var(--text-gray);
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    /* ==========================================
+       DOWNLOAD CARDS
+       ========================================== */
+    .download-sec {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .grid-download {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .dl-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 40px 30px;
+      text-align: center;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .dl-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary-neon);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .dl-icon {
+      font-size: 3.5rem;
+      color: var(--primary-neon);
+      margin-bottom: 20px;
+    }
+
+    .dl-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .dl-info {
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      color: var(--text-gray);
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+
+    .dl-info span {
+      color: var(--secondary-gold);
+      font-weight: 700;
+    }
+
+    /* ==========================================
+       SYSTEM REQUIREMENTS
+       ========================================== */
+    .sys-sec {
+      padding: 80px 0;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .sys-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .sys-box {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      padding: 30px;
+    }
+
+    .sys-box h3 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--primary-neon);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .sys-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-family: var(--font-sub);
+      font-size: 1.05rem;
+    }
+
+    .sys-list li span:first-child {
+      color: var(--text-gray);
+      text-transform: uppercase;
+    }
+
+    .sys-list li span:last-child {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ==========================================
+       FAQ ACCORDION
+       ========================================== */
+    .faq-sec {
+      padding: 80px 0;
+    }
+
+    .faq-wrapper {
+      max-width: 900px;
+      margin: 40px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    .faq-header {
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .faq-header i {
+      color: var(--primary-neon);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-body {
+      padding: 0 24px 20px;
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      display: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 16px;
+    }
+
+    .faq-item.active .faq-body {
+      display: block;
+    }
+
+    .faq-item.active .faq-header i {
+      transform: rotate(180deg);
+    }
+
+    /* ==========================================
+       FOOTER
+       ========================================== */
+    footer {
+      background: #060709;
+      padding: 80px 0 30px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-gray);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .footer-about p {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-neon);
+      padding-left: 6px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      width: 42px;
+      height: 42px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--primary-neon);
+      color: #000;
+      border-color: var(--primary-neon);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 30px;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================
+       RESPONSIVE DESIGN
+       ========================================== */
+    @media (max-width: 992px) {
+      .grid-download { grid-template-columns: repeat(2, 1fr); }
+      .sys-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-toggle { display: block; }
+      .nav-menu {
+        position: fixed;
+        top: 85px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 85px);
+        background: var(--bg-main);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 60px;
+        transition: var(--transition);
+      }
+      .nav-menu.active { left: 0; }
+      .page-title { font-size: 3.2rem; }
+      .grid-download { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        MAN STAND <span>OFF</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link">Bosh Sahifa</a></li>
+          <li><a href="weapons.html" class="nav-link">Arsenali (Qurollar)</a></li>
+          <li><a href="maps.html" class="nav-link">Xaritalar</a></li>
+          <li><a href="esports.html" class="nav-link">Kibersport</a></li>
+          <li><a href="download.html" class="nav-link active">Yuklab Olish</a></li>
+        </ul>
+      </nav>
+
+      <div class="mobile-toggle" id="mobileToggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <section class="page-banner">
+    <div class="container">
+      <span class="section-tag">Arena Bilan Birga Boʻling</span>
+      <h1 class="page-title">Oʻyinni Yuklab Olish</h1>
+      <p class="page-desc">MAN STAND OFF oʻyinini Android, iOS yoki PC qurilmangizga mutlaqo bepul yuklab oling va jangni boshlang.</p>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD OPTIONS -->
+  <section class="download-sec">
+    <div class="container">
+      <div class="grid-download">
+
+        <!-- Android -->
+        <div class="dl-card">
+          <div class="dl-icon"><i class="fa-brands fa-android"></i></div>
+          <h3 class="dl-title">Android</h3>
+          <div class="dl-info">
+            Versiya: <span>0.28.0</span><br>
+            Hajmi: <span>1.8 GB</span><br>
+            Talab: <span>Android 7.0+</span>
+          </div>
+          <button class="btn-cyber" onclick="alert('APK yuklab olish boshlandi!');"><i class="fa-solid fa-download"></i> APK YUKLASH</button>
+        </div>
+
+        <!-- iOS -->
+        <div class="dl-card">
+          <div class="dl-icon"><i class="fa-brands fa-apple"></i></div>
+          <h3 class="dl-title">iOS (App Store)</h3>
+          <div class="dl-info">
+            Versiya: <span>0.28.0</span><br>
+            Hajmi: <span>2.1 GB</span><br>
+            Talab: <span>iOS 12.0+</span>
+          </div>
+          <button class="btn-cyber" onclick="alert('App Store ga yoʻnaltirilmoqda...');"><i class="fa-brands fa-app-store-ios"></i> APP STORE</button>
+        </div>
+
+        <!-- PC Client / Emulator -->
+        <div class="dl-card">
+          <div class="dl-icon"><i class="fa-solid fa-desktop"></i></div>
+          <h3 class="dl-title">PC Client</h3>
+          <div class="dl-info">
+            Versiya: <span>0.28.0 (PC)</span><br>
+            Hajmi: <span>3.5 GB</span><br>
+            Talab: <span>Windows 10/11</span>
+          </div>
+          <button class="btn-cyber" onclick="alert('PC Installer yuklab olinmoqda...');"><i class="fa-solid fa-laptop"></i> PC CLIENT</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEM REQUIREMENTS -->
+  <section class="sys-sec">
+    <div class="container">
+      <div style="text-align: center;">
+        <span class="section-tag">Kompaniyalik va Qurilma</span>
+        <h2 style="font-family: var(--font-display); font-size: 3rem; text-transform: uppercase;">Tizim Talablari (PC / Android)</h2>
+      </div>
+
+      <div class="sys-grid">
+        <!-- Minimum -->
+        <div class="sys-box">
+          <h3>Minimal Talablar</h3>
+          <ul class="sys-list">
+            <li><span>Operatsion Tizim</span> <span>Android 7.0 / Win 10 64-bit</span></li>
+            <li><span>Protsessor (CPU)</span> <span>Snapdragon 660 / Intel i3 6th Gen</span></li>
+            <li><span>Operativ xotira (RAM)</span> <span>3 GB RAM</span></li>
+            <li><span>Videokarta (GPU)</span> <span>Adreno 512 / Intel HD Graphics 620</span></li>
+            <li><span>Boʻsh joy</span> <span>4 GB Boʻsh joy</span></li>
+          </ul>
+        </div>
+
+        <!-- Recommended -->
+        <div class="sys-box">
+          <h3>Tavsiya Etiladigan Talablar (120 FPS)</h3>
+          <ul class="sys-list">
+            <li><span>Operatsion Tizim</span> <span>Android 12+ / Win 11 64-bit</span></li>
+            <li><span>Protsessor (CPU)</span> <span>Snapdragon 870+ / Intel i5 10th Gen</span></li>
+            <li><span>Operativ xotira (RAM)</span> <span>6 GB+ RAM</span></li>
+            <li><span>Videokarta (GPU)</span> <span>Adreno 650 / GTX 1060 6GB</span></li>
+            <li><span>Boʻsh joy</span> <span>10 GB SSD Boʻsh joy</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="faq-sec">
+    <div class="container">
+      <div style="text-align: center;">
+        <span class="section-tag">Yordam</span>
+        <h2 style="font-family: var(--font-display); font-size: 3rem; text-transform: uppercase;">Tez-Tez Beriladigan Savollar</h2>
+      </div>
+
+      <div class="faq-wrapper">
+        <div class="faq-item">
+          <div class="faq-header">
+            <span>Oʻyin mutlaqo bepulmi?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-body">
+            Ha, MAN STAND OFF mutlaqo bepul (Free-to-Play). Oʻyindagi barcha skinlar va kosmetik buyumlar xarakteristikalarga taʼsir qilmaydi va faqat estetik ahamiyatga ega.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span>120 FPS rejimini qanday yoqish mumkin?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-body">
+            Oʻyin sozlamalaridan "Grafika" boʻlimiga oʻting va "Kadrlar chastotasi" parametri ostida 120 FPS rejimini tanlang. Qurilmangiz ekrani 120Hz chastotani qoʻllab-quvvatlashi zarur.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span>Akkountni qaytarish yoki havfsizlikni taʼminlash qanday boʻladi?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-body">
+            Akkountingizni Google, Apple ID yoki Facebook profiliga ulashingiz tavsiya etiladi. Murojaatlar uchun 24/7 support@manstandoff.com xizmati ishlaydi.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="logo">MAN STAND <span>OFF</span></a>
+          <p>
+            MAN STAND OFF — Mobil va PC platformasidagi №1 taktik multiplayer birinchi shaxs otishmasi (FPS). Yuqori dinamika va adolatli kiber-musobaqalar.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fa-brands fa-discord"></i></a>
+            <a href="#"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-vk"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigatsiya</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Bosh Sahifa</a></li>
+            <li><a href="weapons.html">Arsenali</a></li>
+            <li><a href="maps.html">Xaritalar</a></li>
+            <li><a href="esports.html">Kibersport</a></li>
+            <li><a href="download.html">Yuklab Olish</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Jamiyat</h4>
+          <ul class="footer-links">
+            <li><a href="#">Discord Server</a></li>
+            <li><a href="#">Telegram Kanal</a></li>
+            <li><a href="#">VK Guruh</a></li>
+            <li><a href="#">Bozor (Market)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Qoʻllab-quvvatlash</h4>
+          <p style="font-size: 0.9rem; line-height: 1.8;">
+            Savol va texnik muammolar boʻyicha:<br>
+            Email: support@manstandoff.com<br>
+            24/7 Onlayn Yordam Tizimi
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 MAN STAND OFF Studio. Barcha huquqlar himoyalangan.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Header Scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile Toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      const icon = mobileToggle.querySelector('i');
+      if (navMenu.classList.contains('active')) {
+        icon.className = 'fa-solid fa-xmark';
+      } else {
+        icon.className = 'fa-solid fa-bars';
+      }
+    });
+
+    // Accordion FAQ
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const header = item.querySelector('.faq-header');
+      header.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

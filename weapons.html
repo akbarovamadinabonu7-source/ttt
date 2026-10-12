@@ -1,0 +1,800 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qurollar Arsenali — MAN STAND OFF</title>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ==========================================
+       RESET & CYBER-GAME VARIABLES
+       ========================================== */
+    :root {
+      --bg-main: #0a0b0e;
+      --bg-card: #12151d;
+      --bg-card-hover: #1a1e29;
+      --primary-neon: #ff6b00;
+      --primary-glow: rgba(255, 107, 0, 0.4);
+      --secondary-gold: #e5a93c;
+      --text-white: #ffffff;
+      --text-gray: #a3a8b5;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --font-display: 'Teko', sans-serif;
+      --font-sub: 'Rajdhani', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --max-width: 1300px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 107, 0, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(229, 169, 60, 0.05) 0%, transparent 40%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ==========================================
+       HEADER & NAVIGATION
+       ========================================== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 11, 14, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      padding: 5px 0;
+      background: rgba(10, 11, 14, 0.98);
+      border-bottom-color: var(--primary-neon);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 85px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo span {
+      color: var(--primary-neon);
+      text-shadow: 0 0 12px var(--primary-glow);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 36px;
+    }
+
+    .nav-link {
+      font-family: var(--font-sub);
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: var(--text-gray);
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text-white);
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--primary-neon);
+      box-shadow: 0 0 8px var(--primary-neon);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: var(--text-white);
+      cursor: pointer;
+    }
+
+    /* ==========================================
+       PAGE BANNER
+       ========================================== */
+    .page-banner {
+      padding: 150px 0 60px;
+      background: linear-gradient(180deg, rgba(10, 11, 14, 0.7) 0%, rgba(10, 11, 14, 1) 100%),
+                  url('https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=1920&auto=format&fit=crop') center/cover;
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .section-tag {
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      color: var(--primary-neon);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .page-desc {
+      color: var(--text-gray);
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    /* ==========================================
+       FILTER TOOLBAR
+       ========================================== */
+    .filter-sec {
+      padding: 30px 0;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .filter-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-gray);
+      font-family: var(--font-sub);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      cursor: pointer;
+      transition: var(--transition);
+      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary-neon);
+      color: #000;
+      border-color: var(--primary-neon);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    /* ==========================================
+       WEAPONS GRID
+       ========================================== */
+    .weapons-sec {
+      padding: 80px 0;
+    }
+
+    .grid-weapons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .weapon-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .weapon-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary-neon);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .weapon-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-family: var(--font-sub);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--secondary-gold);
+    }
+
+    .weapon-img {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .weapon-img img {
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.8));
+    }
+
+    .weapon-card:hover .weapon-img img {
+      transform: scale(1.08);
+    }
+
+    .weapon-info {
+      margin-bottom: 20px;
+    }
+
+    .weapon-name {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #fff;
+    }
+
+    .weapon-type {
+      font-family: var(--font-sub);
+      font-size: 0.9rem;
+      color: var(--primary-neon);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    /* STATS BARS */
+    .weapon-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: auto;
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+
+    .stat-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-sub);
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .stat-label span:last-child {
+      color: #fff;
+    }
+
+    .bar-bg {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff6b00, #e5a93c);
+      box-shadow: 0 0 8px var(--primary-neon);
+    }
+
+    /* ==========================================
+       FOOTER
+       ========================================== */
+    footer {
+      background: #060709;
+      padding: 80px 0 30px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-gray);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .footer-about p {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-neon);
+      padding-left: 6px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      width: 42px;
+      height: 42px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--primary-neon);
+      color: #000;
+      border-color: var(--primary-neon);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 30px;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================
+       RESPONSIVE DESIGN
+       ========================================== */
+    @media (max-width: 992px) {
+      .grid-weapons { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-toggle { display: block; }
+      .nav-menu {
+        position: fixed;
+        top: 85px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 85px);
+        background: var(--bg-main);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 60px;
+        transition: var(--transition);
+      }
+      .nav-menu.active { left: 0; }
+      .page-title { font-size: 3.2rem; }
+      .grid-weapons { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        MAN STAND <span>OFF</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link">Bosh Sahifa</a></li>
+          <li><a href="weapons.html" class="nav-link active">Arsenali (Qurollar)</a></li>
+          <li><a href="maps.html" class="nav-link">Xaritalar</a></li>
+          <li><a href="esports.html" class="nav-link">Kibersport</a></li>
+          <li><a href="download.html" class="nav-link">Yuklab Olish</a></li>
+        </ul>
+      </nav>
+
+      <div class="mobile-toggle" id="mobileToggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <section class="page-banner">
+    <div class="container">
+      <span class="section-tag">Oʻyin Arsenali</span>
+      <h1 class="page-title">Qurollar va Taktiya</h1>
+      <p class="page-desc">Har bir qurolning oʻziga xos ballistikasi, qaytishi (recoil) va zarari bor. Jang maydonida gʻalaba qozonish uchun mukammal qurolingizni tanlang.</p>
+    </div>
+  </section>
+
+  <!-- FILTER TOOLBAR -->
+  <section class="filter-sec">
+    <div class="container">
+      <div class="filter-wrapper">
+        <button class="filter-btn active" data-filter="all">Barchasi</button>
+        <button class="filter-btn" data-filter="rifle">Avtomatlar</button>
+        <button class="filter-btn" data-filter="sniper">Snayperlar</button>
+        <button class="filter-btn" data-filter="pistol">Pistollar</button>
+        <button class="filter-btn" data-filter="knife">Pichoqlar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEAPONS GRID -->
+  <section class="weapons-sec">
+    <div class="container">
+      <div class="grid-weapons" id="weaponsGrid">
+
+        <!-- Weapon 1: AKR -->
+        <div class="weapon-card" data-cat="rifle">
+          <span class="weapon-badge">Rifle</span>
+          <div class="weapon-img">
+            <img src="https://images.unsplash.com/photo-1595590424283-b8f17842773f?q=80&w=500&auto=format&fit=crop" alt="AKR">
+          </div>
+          <div class="weapon-info">
+            <h3 class="weapon-name">AKR "Tiger"</h3>
+            <span class="weapon-type">Shturmovaya Vintovka</span>
+          </div>
+          <div class="weapon-stats">
+            <div class="stat-row">
+              <div class="stat-label"><span>Zarar (Damage)</span> <span>88</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Otish Tezligi</span> <span>65</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 65%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Aniqlik</span> <span>72</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 72%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weapon 2: M4 -->
+        <div class="weapon-card" data-cat="rifle">
+          <span class="weapon-badge">Rifle</span>
+          <div class="weapon-img">
+            <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?q=80&w=500&auto=format&fit=crop" alt="M4">
+          </div>
+          <div class="weapon-info">
+            <h3 class="weapon-name">M4A1 "Necromancer"</h3>
+            <span class="weapon-type">Shturmovaya Vintovka</span>
+          </div>
+          <div class="weapon-stats">
+            <div class="stat-row">
+              <div class="stat-label"><span>Zarar (Damage)</span> <span>75</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 75%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Otish Tezligi</span> <span>80</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 80%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Aniqlik</span> <span>85</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weapon 3: AWM -->
+        <div class="weapon-card" data-cat="sniper">
+          <span class="weapon-badge">Sniper</span>
+          <div class="weapon-img">
+            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500&auto=format&fit=crop" alt="AWM">
+          </div>
+          <div class="weapon-info">
+            <h3 class="weapon-name">AWM "Dragon Glass"</h3>
+            <span class="weapon-type">Snayper Vintovkasi</span>
+          </div>
+          <div class="weapon-stats">
+            <div class="stat-row">
+              <div class="stat-label"><span>Zarar (Damage)</span> <span>100</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Otish Tezligi</span> <span>25</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 25%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Aniqlik</span> <span>98</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 98%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weapon 4: Desert Eagle -->
+        <div class="weapon-card" data-cat="pistol">
+          <span class="weapon-badge">Pistol</span>
+          <div class="weapon-img">
+            <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?q=80&w=500&auto=format&fit=crop" alt="Deagle">
+          </div>
+          <div class="weapon-info">
+            <h3 class="weapon-name">Desert Eagle "Dragon"</h3>
+            <span class="weapon-type">Oʻgʻir Pistol</span>
+          </div>
+          <div class="weapon-stats">
+            <div class="stat-row">
+              <div class="stat-label"><span>Zarar (Damage)</span> <span>85</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Otish Tezligi</span> <span>40</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 40%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Aniqlik</span> <span>70</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 70%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weapon 5: Karambit -->
+        <div class="weapon-card" data-cat="knife">
+          <span class="weapon-badge">Melee</span>
+          <div class="weapon-img">
+            <img src="https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=500&auto=format&fit=crop" alt="Karambit">
+          </div>
+          <div class="weapon-info">
+            <h3 class="weapon-name">Karambit "Gold Feather"</h3>
+            <span class="weapon-type">Taktik Pichoq</span>
+          </div>
+          <div class="weapon-stats">
+            <div class="stat-row">
+              <div class="stat-label"><span>Zarar (Damage)</span> <span>90</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Hujum Tezligi</span> <span>95</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Harakatlanish</span> <span>100</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weapon 6: Butterfly Knife -->
+        <div class="weapon-card" data-cat="knife">
+          <span class="weapon-badge">Melee</span>
+          <div class="weapon-img">
+            <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=500&auto=format&fit=crop" alt="Butterfly">
+          </div>
+          <div class="weapon-info">
+            <h3 class="weapon-name">Butterfly "Legacy"</h3>
+            <span class="weapon-type">Kapalak Pichoq</span>
+          </div>
+          <div class="weapon-stats">
+            <div class="stat-row">
+              <div class="stat-label"><span>Zarar (Damage)</span> <span>88</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Hujum Tezligi</span> <span>92</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 92%;"></div></div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label"><span>Harakatlanish</span> <span>100</span></div>
+              <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="logo">MAN STAND <span>OFF</span></a>
+          <p>
+            MAN STAND OFF — Mobil va PC platformasidagi №1 taktik multiplayer birinchi shaxs otishmasi (FPS). Yuqori dinamika va adolatli kiber-musobaqalar.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fa-brands fa-discord"></i></a>
+            <a href="#"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-vk"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigatsiya</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Bosh Sahifa</a></li>
+            <li><a href="weapons.html">Arsenali</a></li>
+            <li><a href="maps.html">Xaritalar</a></li>
+            <li><a href="esports.html">Kibersport</a></li>
+            <li><a href="download.html">Yuklab Olish</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Jamiyat</h4>
+          <ul class="footer-links">
+            <li><a href="#">Discord Server</a></li>
+            <li><a href="#">Telegram Kanal</a></li>
+            <li><a href="#">VK Guruh</a></li>
+            <li><a href="#">Bozor (Market)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Qoʻllab-quvvatlash</h4>
+          <p style="font-size: 0.9rem; line-height: 1.8;">
+            Savol va texnik muammolar boʻyicha:<br>
+            Email: support@manstandoff.com<br>
+            24/7 Onlayn Yordam Tizimi
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 MAN STAND OFF Studio. Barcha huquqlar himoyalangan.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Header Scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile Toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      const icon = mobileToggle.querySelector('i');
+      if (navMenu.classList.contains('active')) {
+        icon.className = 'fa-solid fa-xmark';
+      } else {
+        icon.className = 'fa-solid fa-bars';
+      }
+    });
+
+    // Filter Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const weaponCards = document.querySelectorAll('.weapon-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        weaponCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-cat') === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

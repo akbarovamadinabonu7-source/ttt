@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kibersport & Turnirlar — MAN STAND OFF</title>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ==========================================
+       RESET & CYBER-GAME VARIABLES
+       ========================================== */
+    :root {
+      --bg-main: #0a0b0e;
+      --bg-card: #12151d;
+      --bg-card-hover: #1a1e29;
+      --primary-neon: #ff6b00;
+      --primary-glow: rgba(255, 107, 0, 0.4);
+      --secondary-gold: #e5a93c;
+      --text-white: #ffffff;
+      --text-gray: #a3a8b5;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --font-display: 'Teko', sans-serif;
+      --font-sub: 'Rajdhani', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --max-width: 1300px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 107, 0, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(229, 169, 60, 0.05) 0%, transparent 40%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ==========================================
+       HEADER & NAVIGATION
+       ========================================== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 11, 14, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      padding: 5px 0;
+      background: rgba(10, 11, 14, 0.98);
+      border-bottom-color: var(--primary-neon);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 85px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo span {
+      color: var(--primary-neon);
+      text-shadow: 0 0 12px var(--primary-glow);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 36px;
+    }
+
+    .nav-link {
+      font-family: var(--font-sub);
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: var(--text-gray);
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text-white);
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--primary-neon);
+      box-shadow: 0 0 8px var(--primary-neon);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: var(--text-white);
+      cursor: pointer;
+    }
+
+    /* ==========================================
+       PAGE BANNER
+       ========================================== */
+    .page-banner {
+      padding: 150px 0 60px;
+      background: linear-gradient(180deg, rgba(10, 11, 14, 0.75) 0%, rgba(10, 11, 14, 1) 100%),
+                  url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920&auto=format&fit=crop') center/cover;
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .section-tag {
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      color: var(--primary-neon);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .page-desc {
+      color: var(--text-gray);
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    /* ==========================================
+       TOURNAMENTS SECTION
+       ========================================== */
+    .tournaments-sec {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .tourney-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      margin-bottom: 24px;
+      padding: 24px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .tourney-card:hover {
+      border-color: var(--primary-neon);
+      transform: translateX(6px);
+      box-shadow: 0 0 20px rgba(255, 107, 0, 0.2);
+    }
+
+    .tourney-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .tourney-icon {
+      font-size: 2.5rem;
+      color: var(--primary-neon);
+      background: rgba(255, 107, 0, 0.1);
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    }
+
+    .tourney-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .tourney-meta {
+      font-family: var(--font-sub);
+      font-size: 0.95rem;
+      color: var(--text-gray);
+      display: flex;
+      gap: 20px;
+    }
+
+    .tourney-prize {
+      text-align: right;
+    }
+
+    .prize-amount {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      color: var(--secondary-gold);
+      line-height: 1;
+    }
+
+    .prize-label {
+      font-family: var(--font-sub);
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .badge-status {
+      font-family: var(--font-sub);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-color);
+    }
+
+    .badge-status.live {
+      background: rgba(255, 0, 0, 0.2);
+      border-color: #ff0000;
+      color: #ff4d4d;
+    }
+
+    .badge-status.upcoming {
+      background: rgba(255, 107, 0, 0.2);
+      border-color: var(--primary-neon);
+      color: var(--primary-neon);
+    }
+
+    /* ==========================================
+       LEADERBOARD / RANKINGS
+       ========================================== */
+    .rankings-sec {
+      padding: 80px 0;
+      background: var(--bg-card);
+    }
+
+    .rank-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      font-family: var(--font-sub);
+    }
+
+    .rank-table th,
+    .rank-table td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .rank-table th {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--primary-neon);
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .rank-table td {
+      font-size: 1.1rem;
+      color: var(--text-white);
+    }
+
+    .rank-table tr:hover td {
+      background: rgba(255, 107, 0, 0.05);
+    }
+
+    .team-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .team-flag {
+      width: 24px;
+      height: 16px;
+      object-fit: cover;
+    }
+
+    .rank-num {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--secondary-gold);
+      width: 40px;
+    }
+
+    /* ==========================================
+       FOOTER
+       ========================================== */
+    footer {
+      background: #060709;
+      padding: 80px 0 30px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-gray);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .footer-about p {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-neon);
+      padding-left: 6px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      width: 42px;
+      height: 42px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--primary-neon);
+      color: #000;
+      border-color: var(--primary-neon);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 30px;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================
+       RESPONSIVE DESIGN
+       ========================================== */
+    @media (max-width: 992px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .tourney-card { flex-direction: column; align-items: flex-start; }
+      .tourney-prize { text-align: left; }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-toggle { display: block; }
+      .nav-menu {
+        position: fixed;
+        top: 85px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 85px);
+        background: var(--bg-main);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 60px;
+        transition: var(--transition);
+      }
+      .nav-menu.active { left: 0; }
+      .page-title { font-size: 3.2rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .rank-table { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        MAN STAND <span>OFF</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link">Bosh Sahifa</a></li>
+          <li><a href="weapons.html" class="nav-link">Arsenali (Qurollar)</a></li>
+          <li><a href="maps.html" class="nav-link">Xaritalar</a></li>
+          <li><a href="esports.html" class="nav-link active">Kibersport</a></li>
+          <li><a href="download.html" class="nav-link">Yuklab Olish</a></li>
+        </ul>
+      </nav>
+
+      <div class="mobile-toggle" id="mobileToggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <section class="page-banner">
+    <div class="container">
+      <span class="section-tag">Professional Liga</span>
+      <h1 class="page-title">Kibersport va Turnirlar</h1>
+      <p class="page-desc">Rasmiy chempionatlar, eng yaxshi pro-jamoalar reytingi hamda minglab dollarlik sovrin jamgʻarmalari uchun kurash.</p>
+    </div>
+  </section>
+
+  <!-- TOURNAMENTS LIST -->
+  <section class="tournaments-sec">
+    <div class="container">
+      <div style="margin-bottom: 40px;">
+        <span class="section-tag">Jadval</span>
+        <h2 style="font-family: var(--font-display); font-size: 3rem; text-transform: uppercase;">Rasmiy Chempionatlar</h2>
+      </div>
+
+      <!-- Tournament 1 -->
+      <div class="tourney-card">
+        <div class="tourney-info">
+          <div class="tourney-icon"><i class="fa-solid fa-trophy"></i></div>
+          <div>
+            <h3 class="tourney-title">Major League Championship 2026</h3>
+            <div class="tourney-meta">
+              <span><i class="fa-regular fa-calendar"></i> 15 - 25 Oktabr</span>
+              <span><i class="fa-solid fa-users"></i> 16 Jamoa</span>
+              <span class="badge-status live"><i class="fa-solid fa-circle"></i> ONLAYN TRANSYASIYA</span>
+            </div>
+          </div>
+        </div>
+        <div class="tourney-prize">
+          <div class="prize-amount">$250,000</div>
+          <div class="prize-label">Sovrin Jamgʻarmasi</div>
+        </div>
+      </div>
+
+      <!-- Tournament 2 -->
+      <div class="tourney-card">
+        <div class="tourney-info">
+          <div class="tourney-icon"><i class="fa-solid fa-crown"></i></div>
+          <div>
+            <h3 class="tourney-title">Asian Rivals Cup - Season 4</h3>
+            <div class="tourney-meta">
+              <span><i class="fa-regular fa-calendar"></i> 01 - 10 Noyabr</span>
+              <span><i class="fa-solid fa-users"></i> 32 Jamoa</span>
+              <span class="badge-status upcoming">ROʻYXATDAN OʻTISH OCHIQ</span>
+            </div>
+          </div>
+        </div>
+        <div class="tourney-prize">
+          <div class="prize-amount">$100,000</div>
+          <div class="prize-label">Sovrin Jamgʻarmasi</div>
+        </div>
+      </div>
+
+      <!-- Tournament 3 -->
+      <div class="tourney-card">
+        <div class="tourney-info">
+          <div class="tourney-icon"><i class="fa-solid fa-gamepad"></i></div>
+          <div>
+            <h3 class="tourney-title">Weekly Clan Warfare #42</h3>
+            <div class="tourney-meta">
+              <span><i class="fa-regular fa-calendar"></i> Har Yakshanba</span>
+              <span><i class="fa-solid fa-users"></i> Cheksiz Klanlar</span>
+              <span class="badge-status">HAR HAFTA</span>
+            </div>
+          </div>
+        </div>
+        <div class="tourney-prize">
+          <div class="prize-amount">50,000 GOLD</div>
+          <div class="prize-label">Oʻyin Valyutasi</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD / RANKINGS -->
+  <section class="rankings-sec">
+    <div class="container">
+      <div style="margin-bottom: 20px;">
+        <span class="section-tag">Reyting</span>
+        <h2 style="font-family: var(--font-display); font-size: 3rem; text-transform: uppercase;">Top PRO Jamoalar</h2>
+      </div>
+
+      <table class="rank-table">
+        <thead>
+          <tr>
+            <th>Oʻrin</th>
+            <th>Jamoa Nomi</th>
+            <th>Mintaqa</th>
+            <th>Gʻalabalar</th>
+            <th>Ochko (PTS)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num">#1</td>
+            <td class="team-cell"><i class="fa-solid fa-shield-cat" style="color: var(--primary-neon);"></i> CYBER DRAGONS</td>
+            <td>Osiyo / Oʻzbekiston</td>
+            <td>142 Match</td>
+            <td style="color: var(--secondary-gold); font-weight: 700;">2,850 PTS</td>
+          </tr>
+          <tr>
+            <td class="rank-num">#2</td>
+            <td class="team-cell"><i class="fa-solid fa-skull" style="color: #ff4d4d;"></i> PHANTOM ELITE</td>
+            <td>Yevropa</td>
+            <td>128 Match</td>
+            <td style="color: var(--secondary-gold); font-weight: 700;">2,620 PTS</td>
+          </tr>
+          <tr>
+            <td class="rank-num">#3</td>
+            <td class="team-cell"><i class="fa-solid fa-fire" style="color: #ff9900;"></i> TITAN SQUAD</td>
+            <td>MDH (CIS)</td>
+            <td>115 Match</td>
+            <td style="color: var(--secondary-gold); font-weight: 700;">2,410 PTS</td>
+          </tr>
+          <tr>
+            <td class="rank-num">#4</td>
+            <td class="team-cell"><i class="fa-solid fa-bolt" style="color: #00ccff;"></i> VORTEX GAMING</td>
+            <td>Shimoliy Amerika</td>
+            <td>98 Match</td>
+            <td style="color: var(--secondary-gold); font-weight: 700;">2,180 PTS</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="logo">MAN STAND <span>OFF</span></a>
+          <p>
+            MAN STAND OFF — Mobil va PC platformasidagi №1 taktik multiplayer birinchi shaxs otishmasi (FPS). Yuqori dinamika va adolatli kiber-musobaqalar.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fa-brands fa-discord"></i></a>
+            <a href="#"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-vk"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigatsiya</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Bosh Sahifa</a></li>
+            <li><a href="weapons.html">Arsenali</a></li>
+            <li><a href="maps.html">Xaritalar</a></li>
+            <li><a href="esports.html">Kibersport</a></li>
+            <li><a href="download.html">Yuklab Olish</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Jamiyat</h4>
+          <ul class="footer-links">
+            <li><a href="#">Discord Server</a></li>
+            <li><a href="#">Telegram Kanal</a></li>
+            <li><a href="#">VK Guruh</a></li>
+            <li><a href="#">Bozor (Market)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Qoʻllab-quvvatlash</h4>
+          <p style="font-size: 0.9rem; line-height: 1.8;">
+            Savol va texnik muammolar boʻyicha:<br>
+            Email: support@manstandoff.com<br>
+            24/7 Onlayn Yordam Tizimi
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 MAN STAND OFF Studio. Barcha huquqlar himoyalangan.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Header Scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile Toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      const icon = mobileToggle.querySelector('i');
+      if (navMenu.classList.contains('active')) {
+        icon.className = 'fa-solid fa-xmark';
+      } else {
+        icon.className = 'fa-solid fa-bars';
+      }
+    });
+  </script>
+</body>
+</html>
